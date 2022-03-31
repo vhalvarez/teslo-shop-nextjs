@@ -6,10 +6,10 @@ import {
     CardActionArea,
     CardMedia,
     Grid,
+    Link,
     Typography,
 } from "@mui/material";
 import { IProduct } from "../../interfaces";
-import Link from "next/link";
 
 interface Props {
     product: IProduct;
