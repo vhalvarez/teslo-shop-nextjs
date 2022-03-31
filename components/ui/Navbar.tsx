@@ -1,28 +1,25 @@
 import NextLink from "next/link";
-import Link from "next/link";
 
 import {
     AppBar,
     Toolbar,
     Typography,
     Box,
+    Link,
     Button,
     IconButton,
     Badge,
 } from "@mui/material";
-import {
-    Search,
-    SearchOutlined,
-    ShoppingCartOutlined,
-} from "@mui/icons-material";
+import { SearchOutlined, ShoppingCartOutlined } from "@mui/icons-material";
 
 export const Navbar = () => {
     return (
         <AppBar>
             <Toolbar>
                 <NextLink href="/" passHref>
-                    <Link >
-                        <Typography variant="h6">Teslo Shop</Typography>
+                    <Link display="flex" alignItems="center">
+                        <Typography variant="h6">Teslo |</Typography>
+                        <Typography sx={{ ml: 0.5 }}>Shop</Typography>
                     </Link>
                 </NextLink>
 
