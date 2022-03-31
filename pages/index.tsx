@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
   return (
-    <h1>Hola mudno</h1>
+    <h1>Hola mundo</h1>
   )
 }
 
