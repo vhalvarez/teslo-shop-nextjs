@@ -1,3 +1,4 @@
+import { FC } from "react";
 import {
     Grid,
     Typography,
@@ -17,7 +18,11 @@ const productsInCart = [
     initialData.products[2],
 ];
 
-export const CartList = () => {
+interface Props {
+    editable: boolean;
+}
+
+export const CartList: FC<Props> = ({ editable }) => {
     return (
         <>
             {productsInCart.map((product) => (
@@ -45,15 +50,27 @@ export const CartList = () => {
                             </Typography>
 
                             {/* Condicional */}
-                            <ItemCounter />
+                            {editable ? (
+                                <ItemCounter />
+                            ) : (
+                                <Typography variant="h5">3 items</Typography>
+                            )}
                         </Box>
                     </Grid>
-                    <Grid item xs={2} display='flex' alignItems={'center'} flexDirection='column'>
-                        <Typography variant='subtitle1'>{ `$${product.price}`}</Typography>
+                    <Grid
+                        item
+                        xs={2}
+                        display="flex"
+                        alignItems={"center"}
+                        flexDirection="column"
+                    >
+                        <Typography variant="subtitle1">{`$${product.price}`}</Typography>
                         {/* Editable */}
-                        <Button variant='text' color='secondary'>
-                            Remover
-                        </Button>
+                        {editable && (
+                            <Button variant="text" color="secondary">
+                                Remover
+                            </Button>
+                        )}
                     </Grid>
                 </Grid>
             ))}
