@@ -8,11 +8,11 @@ const CartPage = () => {
     <ShopLayout title='Carrito - 3' pageDescription='Carrito de Comprar de la tienda'>
         <Typography variant='h1' component='h1'>Carrito</Typography>
     
-        <Grid container>
+        <Grid container spacing={2}>
             <Grid item xs={12} sm={7}>
                 <CartList />
             </Grid>
-            <Grid item xs={12} sm={5}>
+            <Grid item xs={12} sm={5} >
                 <Card className='summary-card'>
                     <CardContent>
                         <Typography variant='h2'>Orden</Typography>
