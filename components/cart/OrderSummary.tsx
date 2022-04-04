@@ -5,7 +5,7 @@ export const OrderSummary = () => {
     <Grid container>
 
         <Grid item xs={6}>
-            <Typography>No pRODUCTOS</Typography>
+            <Typography>No. Productos</Typography>
         </Grid>
 
         <Grid item xs={6} display='flex' justifyContent={'end'}>

@@ -19,10 +19,10 @@ const productsInCart = [
 ];
 
 interface Props {
-    editable: boolean;
+    editable?: boolean;
 }
 
-export const CartList: FC<Props> = ({ editable }) => {
+export const CartList: FC<Props> = ({ editable = false }) => {
     return (
         <>
             {productsInCart.map((product) => (
@@ -32,7 +32,7 @@ export const CartList: FC<Props> = ({ editable }) => {
                             <Link>
                                 <CardActionArea>
                                     <CardMedia
-                                        image={`products/${product.images[1]}`}
+                                        image={`/products/${product.images[1]}`}
                                         component="img"
                                         sx={{ borderRadius: "5px" }}
                                     />
