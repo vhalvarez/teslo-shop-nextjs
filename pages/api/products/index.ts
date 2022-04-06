@@ -17,10 +17,12 @@ export default function handler(
         case "GET":
             return getProducts(req, res);
         default:
-            return res.status(200).json({ message: "Bad request" });
+            return res.status(400).json({ message: "Bad request" });
     }
 }
 const getProducts = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+    await db.connect();
+
     const { gender = "all" } = req.query;
 
     let condition = {};
@@ -32,7 +34,6 @@ const getProducts = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
         condition = { gender };
     }
 
-    await db.connect();
     const products = await Product.find(condition)
         .select("title images prince inStock slug -_id")
         .lean();
