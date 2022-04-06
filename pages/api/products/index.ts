@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { db } from "../../../database";
+import { db, constants } from "../../../database";
 import { IProduct } from "../../../interfaces";
 import { Product } from "../../../models";
 
@@ -21,9 +21,19 @@ export default function handler(
     }
 }
 const getProducts = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-    await db.connect();
+    const { gender = "all" } = req.query;
 
-    const products = await Product.find()
+    let condition = {};
+
+    if (
+        gender !== "all" &&
+        constants.SHOP_CONSTANTS.validGenders.includes(`${gender}`)
+    ) {
+        condition = { gender };
+    }
+
+    await db.connect();
+    const products = await Product.find(condition)
         .select("title images prince inStock slug -_id")
         .lean();
 
