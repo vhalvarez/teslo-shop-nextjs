@@ -10,7 +10,7 @@ const HomePage: NextPage = () => {
 
     return (
         <ShopLayout
-            title={"Teslo - Shop"}
+            title={"Teslo-Shop"}
             pageDescription={"Encuentra los mejores prodductos de Teslo aqui"}
         >
             <Typography variant="h1" component="h1">
