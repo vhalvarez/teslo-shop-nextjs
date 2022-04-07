@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
-
+import { UIContext } from "../../context/";
 import {
     AppBar,
     Toolbar,
@@ -13,7 +13,6 @@ import {
     Badge,
 } from "@mui/material";
 import { SearchOutlined, ShoppingCartOutlined } from "@mui/icons-material";
-import { UIContext } from "../../context/";
 
 export const Navbar = () => {
     const { asPath } = useRouter();
