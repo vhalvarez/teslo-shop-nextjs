@@ -66,27 +66,35 @@ const ProductPage: NextPage<Props> = ({ product }) => {
 
 // getServerSideProps
 // No usar esto SSP..
-// export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-//     const { slug = "" } = params as { slug: string };
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+    const { slug = "" } = params as { slug: string };
 
-//     const product = await dbProducts.getProductBySlug(slug);
+    const product = await dbProducts.getProductBySlug(slug);
 
-//     if (!product) {
-//         return {
-//             destination: "/",
-//             permanent: false,
-//         };
-//     }
+    if (!product) {
+        return {
+            redirect: {
+                destination: "/",
+                permanent: false,
+            }
+        };
+    }
 
-//     return {
-//         props: {
-//             product,
-//         },
-//     };
-// };
+    return {
+        props: {
+            product,
+        },
+    };
+};
 
 // getStaticPaths...
 // You should use getStaticPaths if you’re statically pre-rendering pages that use dynamic routes
+/**
+ * This function is called by Next.js at build time to get the paths for all the pages that need to be
+ * generated.
+ * @param ctx - The context object that Next.js passes to the function.
+ * @returns An object with two properties:
+ */
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
     const productSlugs = await dbProducts.getAllProductSlugs();
 
@@ -106,24 +114,24 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 //- The data comes from a headless CMS.
 //- The data can be publicly cached (not user-specific).
 //- The page must be pre-rendered (for SEO) and be very fast — getStaticProps generates HTML and JSON files, both of which can be cached by a CDN for performance.
-export async function getStaticProps({ params }: any) {
-    const { slug = "" } = params as { slug: string };
+// export async function getStaticProps({ params }: any) {
+//     const { slug = "" } = params as { slug: string };
 
-    const product = await dbProducts.getProductBySlug(slug);
+//     const product = await dbProducts.getProductBySlug(slug);
 
-    if (!product) {
-        return {
-            destination: "/",
-            permanent: false,
-        };
-    }
+//     if (!product) {
+//         return {
+//             destination: "/",
+//             permanent: false,
+//         };
+//     }
 
-    return {
-        props: {
-            product,
-        },
-        revalidate: 60 * 60 * 24,
-    };
-}
+//     return {
+//         props: {
+//             product,
+//         },
+//         revalidate: 60 * 60 * 24,
+//     };
+// }
 
 export default ProductPage;
